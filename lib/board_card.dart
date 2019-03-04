@@ -26,7 +26,7 @@ class _BoardCardState extends State<BoardCard> {
   Widget get boardCard{
     // TODO: hero動畫摸索中
     return Material(
-      color: FutabaPalette.primaryColor,
+      color: FutabaPalette.replyColor,
       child: InkWell(
         onTap: (){ Navigator.pushNamed(context, '/board_view', arguments: widget.board); },
         child: Container(

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import 'reply_model.dart';
-import 'dog_detail.dart';
 import 'dart:math';
 
 class ReplyCard extends StatefulWidget {

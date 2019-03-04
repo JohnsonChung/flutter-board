@@ -15,6 +15,7 @@ class FutabaPalette {
   static Color secondaryTextColor = Color(0xFFAAAAAA);
 
   /// Komica古早色
+  static Color replyColor = Color(0xFFF0E0D6);
   static Color titleColor = Color(0xFFd30000);
   static Color quoteColor = Color(0xFF95ab63);
   static Color nameColor = Color(0xFF117743);
