@@ -53,3 +53,19 @@ class FadeRoute extends PageRoute {
   Duration get transitionDuration => const Duration(milliseconds: 300);
 
 }
+
+
+/// https://stackoverflow.com/questions/50081213/how-do-i-use-hexadecimal-color-strings-in-flutter/53905427#53905427
+/// Color color1 = HexColor(#FFFFFF);
+class HexColor extends Color {
+  static int _getColorFromHex(String hexColor) {
+    hexColor = hexColor.toUpperCase().replaceAll("#", "");
+    if (hexColor.length == 6) {
+      hexColor = "FF" + hexColor;
+    }
+    return int.parse(hexColor, radix: 16);
+  }
+
+  HexColor(final String hexColor) : super(_getColorFromHex(hexColor));
+}
+

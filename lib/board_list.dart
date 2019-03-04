@@ -28,7 +28,10 @@ class BoardList extends StatelessWidget {
         /// Board Card
         return Align(
           alignment: Alignment.topLeft,
-            child: BoardCard(boards[int]),
+            child: Hero(
+                tag: '${boards[int].imageSrc}',
+                child: BoardCard(boards[int])
+            ),
         );
       },
     );

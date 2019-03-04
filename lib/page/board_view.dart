@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_villains/villain.dart';
+import '../board_model.dart';
+import '../reply_model.dart';
+import '../reply_list.dart';
 
 class BoardView extends StatefulWidget {
+  final Board board;
+
+  BoardView(this.board);
+
   @override
   BoardViewState createState() => new BoardViewState();
 }
@@ -18,12 +25,11 @@ class BoardViewState extends State<BoardView> {
           widgetWithChildBuilder: (context, child) {
             // TODO: hero動畫摸索中
             return Villain(
-              villainAnimation: VillainAnimation.fromRight(
-                offset: 1,
+              villainAnimation: VillainAnimation.fromTop(
+                offset: 0.5,
                 from: Duration(milliseconds: 100),
-                to: Duration(milliseconds: 500),
+                to: Duration(milliseconds: 200),
               ),
-              animateExit: true,
               child: child,
             );
           },
@@ -31,34 +37,35 @@ class BoardViewState extends State<BoardView> {
         // TODO: hero動畫摸索中
         body: Villain(
           animateExit: true,
-          villainAnimation: VillainAnimation.fromRight(
-            offset:1,
-            from: Duration(milliseconds: 500),
-            to: Duration(milliseconds: 1000),
+          villainAnimation: VillainAnimation.fromTop(
+            offset:-0.1,
+            from: Duration(milliseconds: 0),
+            to: Duration(milliseconds: 200),
           ),
           // end Villain setting
-          child: Container(
-            child: Card(
-              semanticContainer: true,
-              clipBehavior: Clip.antiAliasWithSaveLayer,
-              // TODO: hero動畫摸索中
-              child:Hero(
-                tag: 'hero',
-                child: Container(
-                    height: 400,
-                    decoration: new BoxDecoration(
-                      image: new DecorationImage(
-                        image: AssetImage('assets/images/board_01.jpg'),
-                        fit: BoxFit.fitHeight,
-                      ),
-                    )),
+          child: Column(
+            children: <Widget>[
+              Container(
+                child: Card(
+                  semanticContainer: true,
+                  clipBehavior: Clip.antiAliasWithSaveLayer,
+                  // TODO: hero動畫摸索中
+                  child:Hero(
+                    tag: '${widget.board.imageSrc}',
+                    child: Container(
+                        height: 250,
+                        decoration: new BoxDecoration(
+                          image: new DecorationImage(
+                            image: AssetImage('assets/images/${widget.board.imageSrc}'),
+                            fit: BoxFit.cover,
+                          ),
+                        )),
+                  ),
+                  elevation: 0,
+                ),
               ),
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              elevation: 5,
-              margin: EdgeInsets.all(10),
-            ),
+              ///   ReplyList()
+            ],
           ),
         ));
   }

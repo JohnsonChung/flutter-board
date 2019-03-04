@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_villains/villain.dart';
 import 'board_model.dart';
 import 'utils/utils.dart';
+import 'utils/colors.dart';
 
 class BoardCard extends StatefulWidget {
   final Board board;
@@ -24,46 +25,40 @@ class _BoardCardState extends State<BoardCard> {
 
   Widget get boardCard{
     // TODO: hero動畫摸索中
-    return Villain(
-      villainAnimation: VillainAnimation.fromLeft(
-        offset: 0.5,
-      ),
-      // end Villain setting
-      child: Material(
-        color: const Color(0xFFF0E0D6),
-        child: InkWell(
-          onTap: (){ Navigator.pushNamed(context, 'board_view'); },
-          child: Container(
-            child: Column(
-              children: [
-                Row(
-                  children: [
-                    Text(widget.board.boardName)
-                  ],
-                ),
-                Expanded(
-                  child: Center(
-                    child: Container(
-                      width: 80,
-                      height: 80,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        image: DecorationImage(
-                          fit: BoxFit.fill,
-                          image: AssetImage('assets/images/board_01.jpg'),
-                        ),
+    return Material(
+      color: FutabaPalette.primaryColor,
+      child: InkWell(
+        onTap: (){ Navigator.pushNamed(context, '/board_view', arguments: widget.board); },
+        child: Container(
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Text(widget.board.boardName)
+                ],
+              ),
+              Expanded(
+                child: Center(
+                  child: Container(
+                    width: 80,
+                    height: 80,
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      image: DecorationImage(
+                        fit: BoxFit.fill,
+                        image: AssetImage('assets/images/${widget.board.imageSrc}'),
                       ),
                     ),
                   ),
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
-                  children: [
-                    Text('人數：${widget.board.counter}')
-                  ],
-                ),
-              ],
-            ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  Text('人數：${widget.board.counter}')
+                ],
+              ),
+            ],
           ),
         ),
       ),

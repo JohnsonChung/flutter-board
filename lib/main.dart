@@ -13,6 +13,7 @@ import 'app_route.dart';
 import 'dog_card.dart';
 import 'dog_detail.dart';
 import 'dog_model.dart';
+import 'utils/utils.dart';
 
 void main() => runApp(MyApp());
 
@@ -43,10 +44,7 @@ class MyApp extends StatelessWidget {
         home: MyHomePage(title: 'ふたば（仮）'),
         // 想要把 setting的 function 切出去，亂寫的居然可以用 笑笑喔
         onGenerateRoute: (RouteSettings settings) => AppRoute.route(settings),
-        routes: {
-          'board_view': (context) => BoardView(),
-          //'list': (_) => ListPage(),
-        },
+        initialRoute: '/',
         navigatorObservers: [new VillainTransitionObserver()],
     );
   }
@@ -112,15 +110,16 @@ class _MyHomePageState extends State<MyHomePage> {
    * DATA
    * ***/
   List<Board> initialBoards = []
-    ..add(Board('Board Name', 'imageSrc', 000))
-    ..add(Board('Board Name', 'imageSrc', 000))
-    ..add(Board('Board Name', 'imageSrc', 000))
-    ..add(Board('Board Name', 'imageSrc', 000))
-    ..add(Board('Board Name', 'imageSrc', 000))
-    ..add(Board('Board Name', 'imageSrc', 000))
-    ..add(Board('Board Name', 'imageSrc', 000))
-    ..add(Board('Board Name', 'imageSrc', 000))
-    ..add(Board('Board Name', 'imageSrc', 000));
+    ..add(Board('Board Name', 'board_0.jpg', 000))
+    ..add(Board('Board Name', 'board_1.jpg', 000))
+    ..add(Board('Board Name', 'board_2.jpg', 000))
+    ..add(Board('Board Name', 'board_3.jpg', 000))
+    ..add(Board('Board Name', 'board_4.jpg', 000))
+    ..add(Board('Board Name', 'board_5.jpg', 000))
+    ..add(Board('Board Name', 'board_6.jpg', 000))
+    ..add(Board('Board Name', 'board_7.jpg', 000))
+    ..add(Board('Board Name', 'board_8.jpg', 000))
+    ..add(Board('Board Name', 'board_9.jpg', 000));
 
   List<Reply> initialReplies = []
     ..add(Reply('No.123456', 'Ruby', 'Portland, OR, USA',

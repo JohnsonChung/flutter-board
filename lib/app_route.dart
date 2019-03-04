@@ -12,13 +12,12 @@ class AppRoute {
     switch (settings.name) {
       case '/':
         return PageTransition(
-            child: BoardView() ,
+            child: Container(),
             type: PageTransitionType.rightToLeft);
         break;
-      case '/second':
-        return PageTransition(
-            child: BoardView(),
-            type: PageTransitionType.rightToLeftWithFade);
+      case '/board_view':
+        return MaterialPageRoute(
+            builder: (context) => BoardView(settings.arguments));
         break;
     }
   }
