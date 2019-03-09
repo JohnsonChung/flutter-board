@@ -21,8 +21,8 @@ class AppDrawerState extends State<AppDrawer> {
               ),
             ),
             new ListTile(
-              title: new Text("Item => 1"),
-              onTap: () {/* Navigator */},
+              title: new Text("Board Settings"),
+              onTap: () {/*Navigator*/},
             ),
             new ListTile(
               title: new Text("Item => 2"),
