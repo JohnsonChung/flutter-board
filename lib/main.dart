@@ -2,21 +2,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_villains/villain.dart';
-import 'board_model.dart';
+import 'package:basic_flutter_app/model/board_model.dart';
 import 'board_list.dart';
 import 'page/board_view.dart';
 import 'page/board_list_view.dart';
-import 'reply_model.dart';
+import 'package:basic_flutter_app/model/reply_model.dart';
 import 'reply_list.dart';
 import 'reply_card.dart';
 import 'app_route.dart';
 import 'utils/utils.dart';
+import 'state_container.dart';
 
-void main() => runApp(MyApp());
+/// Run App with StateContainer
+void main() => runApp(StateContainer(child: new MyApp()));
 
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
     /// Lock Orientation
     SystemChrome.setPreferredOrientations([
       DeviceOrientation.portraitUp,

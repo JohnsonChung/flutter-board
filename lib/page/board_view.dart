@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_villains/villain.dart';
-import '../board_model.dart';
-import '../reply_model.dart';
+import '../model/board_model.dart';
+import '../model/reply_model.dart';
 import '../reply_list.dart';
 
 class BoardView extends StatefulWidget {
@@ -14,64 +14,73 @@ class BoardView extends StatefulWidget {
 }
 
 class BoardViewState extends State<BoardView> {
-
   // TODO:　學習 setState() 的使用方式
-  Map popMenuItems = {'harder': 1, 'smarter': 2};
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: NestedScrollView(
-          headerSliverBuilder: (BuildContext context,  bool innerBoxIsScrolled){
-            return <Widget>[
-              SliverAppBar(
-                floating: false,
-                pinned: false,
-                snap: false,
-                expandedHeight: 150.0,
-                flexibleSpace: FlexibleSpaceBar(
-                  title: Text("Board View"),
-                  background: Hero(
-                    tag: '${widget.board.imageSrc}',
-                    child: Image.asset(
-                        'assets/images/${widget.board.imageSrc}',
+      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+        return <Widget>[
+          SliverAppBar(
+            floating: false,
+            pinned: false,
+            snap: false,
+            expandedHeight: 150.0,
+            flexibleSpace: FlexibleSpaceBar(
+              title: Text("Board View"),
+              background: Hero(
+                tag: '${widget.board.settings.brandImage}',
+                child: Image.asset(
+                    'assets/images/${widget.board.settings.brandImage}',
                     fit: BoxFit.cover),
-                  ),
-                ),
-                actions: <Widget>[
-                  PopupMenuButton(
-                    itemBuilder: (BuildContext context) => <PopupMenuEntry>[
-                      const PopupMenuItem(
-                        value: '1',
-                        child: Text('精華區'),
-                      ),
-                      const PopupMenuItem(
-                        value: '2',
-                        child: Text('版面設定'),
-                      ),
-                    ],
-                  ),
-                ],
               ),
-            ];
-          },
-          body: Villain(
-            animateExit: true,
-            villainAnimation: VillainAnimation.fromTop(
-              offset: -0.1,
-              from: Duration(milliseconds: 0),
-              to: Duration(milliseconds: 200),
             ),
-            // end Villain setting
-            child: Column(
-              children: <Widget>[
-                Expanded(
-                  child: ReplyList(initialReplies),
-                )
-              ],
-            ),
+            actions: <Widget>[_boardPopMenu],
           ),
-        ));
+        ];
+      },
+      body: Villain(
+        animateExit: true,
+        villainAnimation: VillainAnimation.fromTop(
+          offset: -0.1,
+          from: Duration(milliseconds: 0),
+          to: Duration(milliseconds: 200),
+        ),
+        // end Villain setting
+        child: Column(
+          children: <Widget>[
+            Expanded(
+              child: ReplyList(initialReplies),
+            )
+          ],
+        ),
+      ),
+    ));
+  }
+
+  List<String> popMenuList = ['favs', 'settings'];
+  Map popMenuMap = {'favs': 'favs', 'settings': 'settings'};
+
+  Widget get _boardPopMenu {
+    return new PopupMenuButton(onSelected: (popMenuItems) {
+      // TODO: building
+      switch (popMenuItems) {
+        case 'favs':
+          return () {};
+          break;
+        case 'settings':
+          return Navigator.pushNamed(context, '/board_setting_view');
+          break;
+      }
+    }, itemBuilder: (BuildContext context) {
+      return popMenuList
+          .map((item) => new PopupMenuItem(
+                value: item,
+                child: Text(item),
+              ))
+          .toList();
+    });
   }
 
   /***

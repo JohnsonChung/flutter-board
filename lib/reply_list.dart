@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'reply_card.dart';
-import 'reply_model.dart';
+import 'package:basic_flutter_app/model/reply_model.dart';
 
 class ReplyList extends StatelessWidget {
   // Builder methods rely on a set of data, such as a list.

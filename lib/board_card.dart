@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_villains/villain.dart';
-import 'board_model.dart';
+import 'package:basic_flutter_app/model/board_model.dart';
 import 'utils/utils.dart';
 import 'utils/colors.dart';
 
@@ -34,7 +34,7 @@ class _BoardCardState extends State<BoardCard> {
             children: [
               Row(
                 children: [
-                  Text(widget.board.boardName)
+                  Text(widget.board.settings.name)
                 ],
               ),
               Expanded(
@@ -46,7 +46,7 @@ class _BoardCardState extends State<BoardCard> {
                       shape: BoxShape.circle,
                       image: DecorationImage(
                         fit: BoxFit.fill,
-                        image: AssetImage('assets/images/${widget.board.imageSrc}'),
+                        image: AssetImage('assets/images/${widget.board.settings.brandImage}'),
                       ),
                     ),
                   ),
